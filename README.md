@@ -8,7 +8,7 @@ Adenium Normalizer는 다양한 Sensor의 Event( log)를 정규화 합니다. Re
 3. Parser의 Default 입/출력 소스는 Std In/Out이며 사용 환경에 맞게 변경 가능하다. ( ex : data base, file, stream, kafka ..)
 4. Parser는 JVM 8.0 이상이 설치된 모든 환경에서 동작 하며, 독립된 프로세스 또는 Spark와 같은 분산처리 프레임워크 상에서 동작 가능하다.
 5. Parser의 실행 과정
-   ![Figure_1](C:\Users\A0500407\Desktop\OSS WhitePaper\media\figure_1.png)
+   ![Figure_1](https://github.com/SOCLabs/Adenium_Normalizer/blob/master/img/figure_1.png)
 
 
 
