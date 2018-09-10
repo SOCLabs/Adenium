@@ -1,0 +1,67 @@
+﻿idx	column_name
+1	1st Category
+2	2nd Category
+3	Customer
+4	Device Type
+5	Vendor
+6	Event Name
+7	Serverity (Infosec)
+8	Serverity (Device)
+9	Country (Src IP)
+10	Country (Dst IP)
+11	Src IP
+12	Src Port
+13	Dst IP
+14	Dst Port
+15	Protocol
+16	Signature Name
+17	Agent IP
+18	Code
+19	Count
+20	Direction (Src IP)
+21	Direction (Dst IP)
+22	Start Time
+23	End Time
+24	Log Time
+25	Rule Action
+26	Rcvd Bytes
+27	Send Bytes
+28	Message-ID
+29	Src Zone
+30	Dst Zone
+31	Service
+32	Duration
+33	ACL Name
+34	Action
+35	N_CPU
+36	N_USEDMEM
+37	N_BPS
+38	N_PPS
+39	N_SESSION
+40	N_PING
+41	String
+42	Raw Data
+43	URL
+44	URI
+45	File Type
+46	File Hash
+47	Recipient
+48	Sender
+49	Attachment
+50	Src MAC
+51	Dst MAC
+52	URI Params
+53	Customer Group
+54	3rd Category
+55	Device Model
+56	Payload
+57	Header
+58	N_TCP
+59	N_HTTP
+60	N_HTTPS
+61	N_SNMP
+68	Customer Name
+75	Repeat Count
+63	Filier2
+62	Filier3
+64	Filier1

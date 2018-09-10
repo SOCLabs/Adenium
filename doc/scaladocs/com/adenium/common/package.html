@@ -1,0 +1,347 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>common - adenium 2.1.0 API - com.adenium.common</title>
+          <meta name="description" content="common - adenium 2.1.0 API - com.adenium.common" />
+          <meta name="keywords" content="common adenium 2.1.0 API com.adenium.common" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'com.adenium.common.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="com">com</a>.<a href="../package.html" class="extype" name="com.adenium">adenium</a></p>
+        <h1>common</h1><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">common</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p> Provides a common data structure and classes.</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="com.adenium.common"><span>common</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.adenium.common.Field" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FieldextendsProductwithSerializable"></a>
+      <a id="Field:Field"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Field.html"><span class="name">Field</span></a><span class="params">(<span name="key">key: <a href="FieldKey.html" class="extype" name="com.adenium.common.FieldKey">FieldKey</a></span>, <span name="value">value: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@FieldextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Normalization field</p><div class="fullcomment"><div class="comment cmt"><p>Normalization field</p><p>A normalized event consists of a Field class representing the value of each item.
+	  Normalization events are displayed as FieldGetter, Normalized, Parsed, etc.
+		depending on the display format, the presence of auxiliary information, and the difference in functionality provided.</p><ul><li>FieldGetter : <a href="FieldGetter.html" class="extype" name="com.adenium.common.FieldGetter">com.adenium.common.FieldGetter</a><br></li><li>Normalized : <a href="Normalized.html" class="extype" name="com.adenium.common.Normalized">com.adenium.common.Normalized</a><br></li><li>Parsed : <a href="Parsed.html" class="extype" name="com.adenium.common.Parsed">com.adenium.common.Parsed</a></li></ul><p>The field consists of a pair of field key and actual item value.
+</p></div><dl class="paramcmts block"><dt class="param">key</dt><dd class="cmt"><p>Predefined Field Id <a href="FieldKey.html" class="extype" name="com.adenium.common.FieldKey">com.adenium.common.FieldKey</a></p></dd><dt class="param">value</dt><dd class="cmt"><p>Field value</p></dd></dl></div>
+    </li><li name="com.adenium.common.FieldGetter" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FieldGetterextendsAnyRef"></a>
+      <a id="FieldGetter:FieldGetter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FieldGetter.html"><span class="name">FieldGetter</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@FieldGetterextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">trait for Event that has getter interface
+</p>
+    </li><li name="com.adenium.common.FieldKey" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FieldKeyextendsProductwithSerializable"></a>
+      <a id="FieldKey:FieldKey"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="FieldKey.html"><span class="name">FieldKey</span></a><span class="params">(<span name="mid">mid: <span class="extype" name="scala.Int">Int</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="keyID">keyID: <span class="extype" name="scala.Option">Option</span>[<a href="KeyID$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="com.adenium.common.KeyID.Value">KeyID.Value</a>]</span>, <span name="fieldType">fieldType: <a href="FieldType$.html#FieldType=com.adenium.common.FieldType.Value" class="extmbr" name="com.adenium.common.FieldType.FieldType">FieldType</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@FieldKeyextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Field Key</p><div class="fullcomment"><div class="comment cmt"><p>Field Key</p><p>Field item descriptor</p><p>FieldKey is a value that indicates which item a particular field corresponds to</p><ul><li>A unique number (mid)</li><li>Name (name)</li><li>Unique ID : predefined items ( reserved ID : ex- SourceIP )</li><li>See the description of the Formatted field value format. <a href="FieldType$.html" class="extype" name="com.adenium.common.FieldType">com.adenium.common.FieldType</a>
+</li></ul></div><dl class="paramcmts block"><dt class="param">mid</dt><dd class="cmt"><p>Field ID</p></dd><dt class="param">name</dt><dd class="cmt"><p>Field Name (presentation String )</p></dd><dt class="param">keyID</dt><dd class="cmt"><p>Reserved Id</p></dd><dt class="param">fieldType</dt><dd class="cmt"><p>Field type
+</p></dd></dl></div>
+    </li><li name="com.adenium.common.Normalized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="NormalizedextendsFieldGetterwithProductwithSerializable"></a>
+      <a id="Normalized:Normalized"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Normalized.html"><span class="name">Normalized</span></a><span class="params">(<span name="arrayWithMid">arrayWithMid: <span class="extype" name="scala.Array">Array</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>)</span><span class="result"> extends <a href="FieldGetter.html" class="extype" name="com.adenium.common.FieldGetter">FieldGetter</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@NormalizedextendsFieldGetterwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Normalization result
+</p><div class="fullcomment"><div class="comment cmt"><p>Normalization result
+</p></div><dl class="paramcmts block"><dt class="param">arrayWithMid</dt><dd class="cmt"><p>
+</p></dd></dl></div>
+    </li><li name="com.adenium.common.Parsed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParsedextendsFieldGetterwithProductwithSerializable"></a>
+      <a id="Parsed:Parsed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Parsed.html"><span class="name">Parsed</span></a><span class="params">(<span name="fields">fields: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Array">Array</span>[<a href="Field.html" class="extype" name="com.adenium.common.Field">Field</a>]]</span>, <span name="host">host: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="raw">raw: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="log">log: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="FieldGetter.html" class="extype" name="com.adenium.common.FieldGetter">FieldGetter</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@ParsedextendsFieldGetterwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Parsed field with side information.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.adenium.common.Field" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Field"></a>
+      <a id="Field:Field"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Field$.html"><span class="name">Field</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@Field" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="com.adenium.common.FieldKey" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FieldKey"></a>
+      <a id="FieldKey:FieldKey"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="FieldKey$.html"><span class="name">FieldKey</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@FieldKey" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Factory for <a href="FieldKey.html" class="extype" name="com.adenium.common.FieldKey">com.adenium.common.FieldKey</a> instances</p>
+    </li><li name="com.adenium.common.FieldType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FieldType"></a>
+      <a id="FieldType:FieldType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="FieldType$.html"><span class="name">FieldType</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@FieldType" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Generic types in JSON</p><div class="fullcomment"><div class="comment cmt"><p>Generic types in JSON</p><ul><li><b>Number:</b> a signed decimal number that may contain a fractional part and may use exponential E notation,
+		but cannot include non-numbers such as NaN. The format makes no distinction between integer and floating-point.
+		JavaScript uses a double-precision floating-point format for all its numeric values, but other languages implementing JSON may encode numbers differently.</li><li><b>String:</b> a sequence of zero or more Unicode characters. Strings are delimited with double-quotation marks and support a backslash escaping syntax.</li><li><b>Boolean:</b> either of the values true or false</li></ul><p>Basic</p><ol class="decimal"><li><b>Most types are converted to String</b><ul><li>String, Date, DateTime... ==&gt; &quot;String&quot;, Right DateString format ?,</li><li>JSON itself does not specify how dates should be represented, but JavaScript does.</li></ul></li><li><b>Numerics are converted to Long or Double</b><ul><li>Long, Integer, ==&gt; Long, 12345, Double, Float  ==&gt; Double,</li><li>Double or Float : not used in current adenium normalized result.</li></ul></li><li><b>Booleans are converted  to Boolean</b><ul><li>Boolean ==&gt; (Boolean or true),</li><li>false Boolean : not used in current adenium normalized result.</li></ul></li><li><b>Collections</b><ul><li>Map, Tuple ==&gt; { &quot;key&quot; : &quot;value&quot;, &quot;key2&quot; : &quot;value2&quot;, .... }</li><li>Array, ... ==&gt; [ &quot;key&quot; : &quot;value&quot;, &quot;key2&quot; : &quot;value2&quot;, .... }</li></ul></li></ol><p>Data Type of Normalization field</p><p>further thinking...</p><ul><li>  typeStringEmail,</li><li>  typeStringAddress,</li><li>  typeStringIP,</li><li>  typeStringPort,</li><li>  typeStringURL
+</li></ul></div></div>
+    </li><li name="com.adenium.common.KeyID" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="KeyID"></a>
+      <a id="KeyID:KeyID"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="KeyID$.html"><span class="name">KeyID</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@KeyID" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Reserved IDs</p>
+    </li><li name="com.adenium.common.Keys" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Keys"></a>
+      <a id="Keys:Keys"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Keys$.html"><span class="name">Keys</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@Keys" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="com.adenium.common.Normalized" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Normalized"></a>
+      <a id="Normalized:Normalized"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Normalized$.html"><span class="name">Normalized</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@Normalized" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="com.adenium.common.Parsed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Parsed"></a>
+      <a id="Parsed:Parsed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Parsed$.html"><span class="name">Parsed</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.adenium.common.package@Parsed" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

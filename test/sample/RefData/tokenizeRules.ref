@@ -1,0 +1,2 @@
+﻿id	sensorId	sensorType	regex
+100	1234568257	WF	src_ip="(.+?)".+src_port="(.+?)".+dest_ip="(.+?)".+dest_port="(.+?)".+host=\"(.+?)\"\,.+block="(yes|no)".+sigid="(.+?)"

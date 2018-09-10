@@ -1,0 +1,4 @@
+﻿vendor	signature	category1	category2	category3	category4
+26	시스템 폴더 접근 취약점	Security	Exploit	Overflow_Buffers	Web_Application_Vulnerability
+26	사용자 패스워드 접근 공격	Security	Exploit	Overflow_Buffers	Web_Application_Vulnerability
+26	0027: IP Options: Record Route (RR)	Security	Anomaly_Activity	Network	Anomaly_Traffic

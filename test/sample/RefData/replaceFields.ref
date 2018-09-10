@@ -1,0 +1,4 @@
+﻿mid	instr	outstr	vendor
+4	110600275	시스템 폴더 접근 취약점	26
+4	USER_PASSWD_ATTACK	사용자 패스워드 접근 공격	26
+4	110600277	0027: IP Options: Record Route (RR)	Security	26
