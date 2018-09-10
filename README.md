@@ -214,7 +214,7 @@ Event 의 파싱 과 정규화 과정은 아래와 같다.
 
 ### 정규화 기능의 동작
 
-![Figure_2](C:\Users\A0500407\Desktop\OSS WhitePaper\media\figure_2.png)
+![Figure_2](https://github.com/SOCLabs/Adenium_Normalizer/blob/master/img/figure_2.png)
 
 
 
@@ -386,7 +386,7 @@ l
 
 **Test tool의 동작 과정**
 
-![](C:\Users\A0500407\Desktop\OSS WhitePaper\media\figuare_3.png)
+![](https://github.com/SOCLabs/Adenium_Normalizer/blob/master/img/figure_3.png)
 
 ### Sample Dataset
 
