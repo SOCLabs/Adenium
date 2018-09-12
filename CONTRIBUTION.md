@@ -5,10 +5,10 @@
 버그를 리포팅하고 코드 변경을 제안하는 것 못지않게 문서의 오탈자를 수정하거나 다양한 언어로의 번역, 디자인 요소 제안, 릴리즈 테스트 등 모든 관심과 참여를 중요하게 생각하고 있으며 Adenium 프로젝트를 이해하기 위한 질문까지도 환영합니다.
 따라서 아래 내용은 장기적으로 참여하고자 하는 새로운 Contributor를 위한 Use Cases 안내입니다.
 각 기여활동의 성격에 따라 Issues와 Pull requests를 통해 진행하시면 되며
-Adenium 오픈소스 프로젝트에 기여함으로써 [Apache 2.0](https://github.com/SOCLabs/Adenium/blob/master/LICENSE) 라이선스에 따라 사용 허가 된다는것에 동의하게 됩니다. 감사합니다.
+Adenium 오픈소스 프로젝트에 기여함으로써 **[Apache 2.0](https://github.com/SOCLabs/Adenium/blob/master/LICENSE)** 라이선스에 따라 사용 허가 된다는것에 동의하게 됩니다. 감사합니다.
 
-> [Issues](https://github.com/SOCLabs/Adenium/issues) - 버그리포트와 새로운 아이디어 제안
-> [Pull requests](https://github.com/SOCLabs/Adenium/pulls) - 포크(fork)하여 수정한 저장소의 브랜치를 원래의 저장소에 통합하도록 요청
+> **[Issues](https://github.com/SOCLabs/Adenium/issues)** - 버그리포트와 새로운 아이디어 제안 <br>
+> **[Pull requests](https://github.com/SOCLabs/Adenium/pulls)** - 포크(fork)하여 수정한 저장소의 브랜치를 원래의 저장소에 통합하도록 요청
 ----
 - [버그 리포트](#버그-리포트)
 - [기능 개선](#기능-개선)
