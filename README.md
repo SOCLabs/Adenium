@@ -1,3 +1,7 @@
+![Adenium: Normalizer](./img/Adenium_400x105.png)
+
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://choosealicense.com/licenses/apache-2.0) [![wiki](https://img.shields.io/badge/link-wiki-ff69b4.svg)](https://github.com/rareram/Adenium/wiki)
+
 # **Adenium_Normalizer**
 
 Adenium Normalizer는 다양한 Sensor의 Event(Log)를 정규화 합니다. Regular expression 기반으로 범용적인 Tokenization method 와 사전 정의된 정규화 필드 및 사용자 정의 필드를 지원합니다. 독립 실행 구조로 설계되어 독립 실행 어플리케이션 또는 분산처리 Framework 인 Spark와 같은 특정 Framework의 한 부분으로 동작 할 수 있습니다. 
