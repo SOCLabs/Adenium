@@ -1,6 +1,6 @@
 ![Adenium: Normalizer](./img/Adenium_400x105.png)
 
-[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://choosealicense.com/licenses/apache-2.0) [![wiki](https://img.shields.io/badge/link-wiki-ff69b4.svg)](https://github.com/rareram/Adenium/wiki)
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://choosealicense.com/licenses/apache-2.0) [![wiki](https://img.shields.io/badge/link-wiki-ff69b4.svg)](https://github.com/SOCLabs/Adenium/wiki) [![contributing](https://img.shields.io/badge/link-CONTRIBUTIONG-green.svg)](https://github.com/SOCLabs/Adenium/blob/master/CONTRIBUTING.md)
 
 # **Adenium_Normalizer**
 
