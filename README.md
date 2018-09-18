@@ -179,7 +179,7 @@ Company ip 정보와 함께 Agent를 최종 판정하기 위한 보조 정보로
 | 구분    | Type   | 내용                            |
 | ------- | ------ | ------------------------------- |
 | fieldId | String | 변경 대상Field Id               |
-| Int     | outstr | 변경 대상 문자열                |
+| outstr  | String | 변경 대상 문자열                |
 | instr   | String | 변경 할 문자열                  |
 | vendor  | Long   | 변경 대상 조건이 되는 Vendor id |
 
@@ -244,7 +244,7 @@ host name은 참조 정보 [Agent] 의 agentIp 필드와 대응 되며 Event 에
 
 ##### 1) Multiple-Regular Expression 과 Tokenize
 
-후보 Agent 의 SensorId에 해당 하는 모든 정규식을 Tokeniz Rules 에서 선택하여 적용 한다. 동일한 Sensor에서 발생한 Event들 이라고 하더라도, 각기 다른 Regular expression으로 Tokenize 될 수 있고, host name을 공유하는 경우 복수의 후보 Agent에 연결된 sensor의 종류가 다를 수 있어 Multiple-Regular Expression 을 지원한다.
+후보 Agent 의 SensorId에 해당 하는 모든 정규식을 Tokenize Rules 에서 선택하여 적용 한다. 동일한 Sensor에서 발생한 Event들 이라고 하더라도, 각기 다른 Regular expression으로 Tokenize 될 수 있고, host name을 공유하는 경우 복수의 후보 Agent에 연결된 sensor의 종류가 다를 수 있어 Multiple-Regular Expression 을 지원한다.
 
 **Multiple-Regular Expression 제한 및 주의**
 
@@ -264,7 +264,7 @@ Tokenize가 성공할 경우, Tokenize 된 결과를 [Arrange] 규칙을 이용�
 
 ##### 2) Company Ip Range로 비교
 
-1의 과정에서 Company IP로 판별하지 못 하였을 경우 정규화 필드의 SrcIP, DestIP 필드를 Compant Ip Range와 비교하여 매칭된 Company로 결정 한다.
+1의 과정에서 Company IP로 판별하지 못 하였을 경우 정규화 필드의 SrcIP, DestIP 필드를 Company Ip Range와 비교하여 매칭된 Company로 결정 한다.
 
 ##### 3) Company를 결정하지 못 하였을 경우
 
@@ -441,7 +441,7 @@ Java SE Runtime Environment 8 l
 
 4. **종료**
 
-   Black line 입력 또는 q, quit, bye, exit 입력
+   Blank line 입력 또는 q, quit, bye, exit 입력
 
 5. Logging
 
