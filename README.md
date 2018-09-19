@@ -179,7 +179,7 @@ Company IP 정보와 함께 Agent를 최종 판정하기 위한 보조 정보로
 | 구분    | Type   | 내용                            |
 | ------- | ------ | ------------------------------- |
 | fieldId | String | 변경 대상Field Id               |
-| Int     | outstr | 변경 대상 문자열                |
+| outstr  | String | 변경 대상 문자열                |
 | instr   | String | 변경 할 문자열                  |
 | vendor  | Long   | 변경 대상 조건이 되는 Vendor id |
 
@@ -441,7 +441,7 @@ Java SE Runtime Environment 8 l
 
 4. **종료**
 
-   Black line 입력 또는 q, quit, bye, exit 입력
+   Blank line 입력 또는 q, quit, bye, exit 입력
 
 5. Logging
 
