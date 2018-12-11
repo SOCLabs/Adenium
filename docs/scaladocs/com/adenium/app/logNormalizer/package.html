@@ -1,0 +1,215 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>logNormalizer - adenium 2.2.3-a API - com.adenium.app.logNormalizer</title>
+          <meta name="description" content="logNormalizer - adenium 2.2.3 - a API - com.adenium.app.logNormalizer" />
+          <meta name="keywords" content="logNormalizer adenium 2.2.3 a API com.adenium.app.logNormalizer" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'com.adenium.app.logNormalizer.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="com">com</a>.<a href="../../package.html" class="extype" name="com.adenium">adenium</a>.<a href="../package.html" class="extype" name="com.adenium.app">app</a></p>
+        <h1>logNormalizer</h1><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">logNormalizer</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.adenium.app.logNormalizer.LNBroadcast" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="LNBroadcastextendsProductwithSerializable"></a>
+      <a id="LNBroadcast:LNBroadcast"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LNBroadcast.html"><span class="name">LNBroadcast</span></a><span class="params">(<span name="zkCurator">zkCurator: <a href="../framework/AdeniumBroadcast$$Ref.html" class="extype" name="com.adenium.app.framework.AdeniumBroadcast.Ref">Ref</a>[<a href="../../externals/zookeeper/ZkClient.html" class="extype" name="com.adenium.externals.zookeeper.ZkClient">ZkClient</a>] = <span class="symbol"><span class="name"><a href="../../../package.html">Ref.empty</a></span></span></span>, <span name="kfQueue">kfQueue: <a href="../framework/AdeniumBroadcast$$Ref.html" class="extype" name="com.adenium.app.framework.AdeniumBroadcast.Ref">Ref</a>[<a href="../../externals/kafka/KfQueue.html" class="extype" name="com.adenium.externals.kafka.KfQueue">KfQueue</a>] = <span class="symbol"><span class="name"><a href="../../../package.html">Ref.empty</a></span></span></span>, <span name="parserRef">parserRef: <a href="../framework/AdeniumBroadcast$$Ref.html" class="extype" name="com.adenium.app.framework.AdeniumBroadcast.Ref">Ref</a>[<a href="../../parser/reference/ParserRef.html" class="extype" name="com.adenium.parser.reference.ParserRef">ParserRef</a>] = <span class="symbol"><span class="name"><a href="../../../package.html">Ref.empty</a></span></span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package@LNBroadcastextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Defines broadcast variables used for normalization.</p><div class="fullcomment"><div class="comment cmt"><p>Defines broadcast variables used for normalization.
+The zkcurator, kafka queue, and normalization reference data is broadcast.
+Broadcast variables are wrapped in the Ref class.<a href="../framework/AdeniumBroadcast$$Ref.html" class="extype" name="com.adenium.app.framework.AdeniumBroadcast.Ref">com.adenium.app.framework.AdeniumBroadcast.Ref</a>
+</p></div><dl class="paramcmts block"><dt class="param">kfQueue</dt><dd class="cmt"><p>: kafka producer</p></dd><dt class="param">parserRef</dt><dd class="cmt"><p>: Normalization reference data
+</p></dd></dl></div>
+    </li><li name="com.adenium.app.logNormalizer.LNBroadcastHelper" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LNBroadcastHelperextendsAdeniumBroadcastHelper[com.adenium.app.logNormalizer.LNBroadcast]withProductwithSerializable"></a>
+      <a id="LNBroadcastHelper:LNBroadcastHelper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LNBroadcastHelper.html"><span class="name">LNBroadcastHelper</span></a><span class="params">(<span name="conf">conf: <a href="../config/Conf.html" class="extype" name="com.adenium.app.config.Conf">Conf</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="parserRefMaker">parserRefMaker: <a href="../../parser/reference/ParserRefMaker.html" class="extype" name="com.adenium.parser.reference.ParserRefMaker">ParserRefMaker</a></span>)</span><span class="result"> extends <a href="../framework/AdeniumBroadcastHelper.html" class="extype" name="com.adenium.app.framework.AdeniumBroadcastHelper">AdeniumBroadcastHelper</a>[<a href="LNBroadcast.html" class="extype" name="com.adenium.app.logNormalizer.LNBroadcast">LNBroadcast</a>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package@LNBroadcastHelperextendsAdeniumBroadcastHelper[com.adenium.app.logNormalizer.LNBroadcast]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.adenium.app.logNormalizer.LNBroadcast" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LNBroadcast"></a>
+      <a id="LNBroadcast:LNBroadcast"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LNBroadcast$.html"><span class="name">LNBroadcast</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package@LNBroadcast" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="com.adenium.app.logNormalizer.LNBroadcastHelper" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LNBroadcastHelper"></a>
+      <a id="LNBroadcastHelper:LNBroadcastHelper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LNBroadcastHelper$.html"><span class="name">LNBroadcastHelper</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package@LNBroadcastHelper" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="com.adenium.app.logNormalizer.LogNormalizer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="LogNormalizer"></a>
+      <a id="LogNormalizer:LogNormalizer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LogNormalizer$.html"><span class="name">LogNormalizer</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package@LogNormalizer" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">LogNormalizer
+Create the Adenium context and prepare the resources for running the engine.</p><div class="fullcomment"><div class="comment cmt"><p>LogNormalizer
+Create the Adenium context and prepare the resources for running the engine.
+The Adenium context includes &quot;spark context&quot;, &quot;spark direct stream&quot;, &quot;engine configuration&quot;, and &quot;resource&quot;.
+Resources include information about the zookeeper connection and Kafka connection information.
+</p></div></div>
+    </li><li name="com.adenium.app.logNormalizer.LogNormalizerHelper" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LogNormalizerHelper"></a>
+      <a id="LogNormalizerHelper:LogNormalizerHelper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LogNormalizerHelper$.html"><span class="name">LogNormalizerHelper</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.adenium.app.logNormalizer.package@LogNormalizerHelper" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Utility class for Normalization</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
