@@ -694,15 +694,15 @@ mvn -clean install -P Parser  // with dependencies.
 
 **RefData :** 정규화 참조 데이터
 
-- **agentInfo.ref : ** Agent 정보
-- **arrangeRules.ref :** Tokenize 결과를 Normalization Field로 변경하는 규칙
-- **companyIpRange.ref : ** 소유주의 IP 범위
-- **companyServerIp.ref : ** 소유주의 IP 정보
-- **fields.ref : ** 정규화 필드
-- **geoIpRange.ref : ** 국가 IP Band
-- **replaceFields.ref : ** 변경 필드
-- **signatures.ref : ** Sensor Signature
-- **tokenizeRules.ref : ** 정규식
+- agentInfo.ref : Agent 정보
+- arrangeRules.ref : Tokenize 결과를 Normalization Field로 변경하는 규칙
+- companyIpRange.ref : 소유주의 IP 범위
+- companyServerIp.ref : 소유주의 IP 정보
+- fields.ref : 정규화 필드
+- geoIpRange.ref : 국가 IP Band
+- replaceFields.ref : 변경 필드
+- signatures.ref : Sensor Signature
+- tokenizeRules.ref : 정규식
 
 ##### Test
 
