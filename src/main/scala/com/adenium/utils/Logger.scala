@@ -1,17 +1,20 @@
 package com.adenium.utils
 
 /**
-  * Log handling class
+  * Created by SecudiumDev on 2017-10-18.
   */
 
 object Logger extends Serializable {
 
+  //ref => https://www.mail-archive.com/user@spark.apache.org/msg29010.html
+
   /**
-    - error   : break conditions
-    - warning : warning or important, main process's flow, one-time job.. stack tracing
-    - info    : optional info, sub-routine's flow
-    - debug   :
-    - trace
+    * error   : break conditions
+    * warning : warning or important, main process's flow, one-time job.. stack tracing
+    * info    : optional info, sub-routine's flow
+    * debug   :
+    * trace
+    *
     */
 
   @transient private lazy val log = org.apache.log4j.Logger.getLogger( getClass.getName)

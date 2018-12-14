@@ -11,11 +11,11 @@ package com.adenium.parser.structs
   * @param category4
   */
 case class Signature(vendor: Long = 0,
-                     signature: String,
-                     category1: String,
-                     category2: String,
-                     category3: String,
-                     category4: String)
+                     signature: String="",
+                     category1: String="",
+                     category2: String="",
+                     category3: String="",
+                     category4: String="")
 
 object Signature {
 
@@ -24,7 +24,7 @@ object Signature {
 
     val ret =
       omap.flatMap( map =>
-          map.get(signature, vendor)
+        map.get(signature, vendor)
       )
     ret
   }

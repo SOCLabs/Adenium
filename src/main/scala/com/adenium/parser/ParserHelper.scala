@@ -1,11 +1,12 @@
 package com.adenium.parser
 
 import com.adenium.common.Keys._
-import com.adenium.common.{Field, FieldKey}
+import com.adenium.common.{Field, FieldKey, VariableKeys}
 import com.adenium.parser.devices._
 import com.adenium.parser.reference.ParserRef
 import com.adenium.parser.structs._
-import com.adenium.utils.May.{lift, maybe}
+import com.adenium.utils.May.maybe
+import com.adenium.utils.StringUtil.lift
 import com.adenium.utils.WOption
 import com.adenium.utils.WOption.{WOptionLogOn, WOptionMaker}
 
@@ -17,7 +18,8 @@ object ParserHelper {
 
   /** Apply the overwrite rule to create the field.
     *
-    * The default field is the overwrite field. The default field is changed. If it is not an overwrite field, it is added without change.
+    * The default field is the overwrite field.
+    * The default field is changed. If it is not an overwrite field, it is added without change.
     *
     * @param fields : target fields
     * @param over : overwrite field
@@ -46,6 +48,7 @@ object ParserHelper {
     over.foldLeft(fields)(append)
   }
 
+  //////////////////////////////////////////////////
   def getString(mid: Int, parsed: Array[(Int, String)])
   : Option[String] = {
     parsed.toMap.get(mid)
@@ -53,7 +56,7 @@ object ParserHelper {
 
   def getInteger(mid: Int, parsed: Map[Int, String] )
   : Option[Int] = {
-    parsed.get(mid).flatMap(str => maybe(str.toInt))
+    parsed.get(mid).flatMap(str => maybe( str.toInt))
   }
 
   def getInteger(mid: Int, parsed: Array[(Int, String)])
@@ -61,8 +64,9 @@ object ParserHelper {
       parsed.toMap.get(mid).flatMap(str => maybe(str.toInt))
   }
 
+  //////////////////////////////////////////////////
   def makeField(mid: Int, value: String)
-               ( implicit wOptionLogOn: WOptionLogOn)
+               ( implicit wOptionLogOn: WOptionLogOn, variableKeys: Option[VariableKeys])
   : WOption[List[String], Field] = {
 
     makeField( getKey(mid), value)
@@ -78,7 +82,7 @@ object ParserHelper {
                  source: Int,
                  parsed: Map[Int, String],
                  f: String => Option[String] = Some(_))
-                ( implicit wOptionLogOn: WOptionLogOn)
+                ( implicit wOptionLogOn: WOptionLogOn, variableKeys: Option[VariableKeys])
   : WOption[List[String], Field] =
   {
     val ret =
@@ -93,78 +97,16 @@ object ParserHelper {
     wOptionLogOn.log( s"makeField: ${ret.map( _.key.name)}") ~> ret
   }
 
-  def makeRefFields ( ref: ParserRef )
-                    ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    val arr = ref.fields.map {
-        _.map { f =>
-          wOptionLogOn.log(s"from Ref ${(f.key.name, f.value.getOrElse(""))}: ") ~> Some(f)
-        }
-      }
-    arr
-      .map ( WOption.sequence( _) )
-      .getOrElse( wOptionLogOn.log("* makeRefFields: empty") ~> Some(Array[Field]()))
-  }
-
-  def makeRawFields ( parsed: Array[(Int, String)])
-                    ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-
-    val flds = parsed.map { itm => makeField( itm._1, itm._2 ) }
-
-    WOption.sequence( flds)
-      .orElse( wOptionLogOn.log("* makeRawFields : empty") ~> Some(Array[Field]()))
-  }
-
-  def makeCatFields( agent: Agent, parsed: Array[(Int, String)], ref: ParserRef)
-                   ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    // todo : check
-    val ret =
-      for {
-        str <- getString( m_SIGNATURE, parsed)
-        signature <- Signature.find( str, agent.vendorId)(ref.signatures)
-      } yield {
-        WOption.sequence {
-          Array(
-            makeField(m_CATEGORY1, signature.category1),
-            makeField(m_CATEGORY2, signature.category2),
-            makeField(m_CATEGORY3, signature.category3)
-          )
-        }
-      }
-    ret.getOrElse( wOptionLogOn.log("* makeCatFields : cat not found") ~> Some( Array[Field]()) )
-
-  }
-
-  def makeGeoFields(agent: Agent, parsed: Map[Int, String], ref: ParserRef)
-                   ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    val ret =
-      WOption.sequence{
-        val arr = Array(
-          makeField( m_SRCCOUNTRY, m_SRCIP, parsed, GeoIpRange.getCountry( _, ref.geoIpRange)),
-          makeField( m_DESTCOUNTRY, m_DESTIP, parsed, GeoIpRange.getCountry( _, ref.geoIpRange))
-        )
-        arr
-      }.orElse( wOptionLogOn.log("* makeGeoFields : empty") ~> Some(Array[Field]()))
-    ret
-  }
-
   def makefixFields(agent: Agent,
                     parsed: Map[Int, String],
                     ref: ParserRef,
                     syslog: Syslog.SyslogHeader)
-                   ( implicit wOptionLogOn: WOptionLogOn)
+                   ( implicit wOptionLogOn: WOptionLogOn, vf: Option[VariableKeys])
   : WOption[List[String], Array[Field]] = {
 
     val orig = getInteger( m_COUNT, parsed).getOrElse( 1)
     val repeat = getInteger( m_REPEATCOUNT, parsed).getOrElse( 1)
-    val count = ( orig * repeat ).toString
+    val count = ( orig * repeat ).toString                // todo
 
     // todo
     val f  = (str: String) => Option( CompanyIpRange.locationString( CompanyIpRange.isCompanyIp( agent.companyId, ref.companyIpRange, str) ))
@@ -180,11 +122,12 @@ object ParserHelper {
         makeField( m_VENDOR, agent.vendorName),
         makeField( m_DEVICEMODEL, agent.sensor),
         makeField( m_DEVICETYPE, agent.sensorType.toString),
+
         makeField( m_REPEATCOUNT, repeat.toString),
         makeField( m_COUNT, count),
 
-        makeField( m_SYSLOGHOST, syslog.hostname),
         makeField( m_SYSLOGTIME, syslog.timestamp),
+
         makeField( m_SRCCOUNTRY, m_SRCIP, parsed, GeoIpRange.getCountry( _, ref.geoIpRange)),
         makeField( m_DESTCOUNTRY, m_DESTIP, parsed, GeoIpRange.getCountry( _, ref.geoIpRange)),
 
@@ -195,78 +138,8 @@ object ParserHelper {
     WOption.sequence( ret.toArray)
   }
 
-
-  def makeAgnFields(agent: Agent, parsed: Array[(Int, String)], ref: ParserRef)
-                   ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    val ret =
-      WOption.sequence(
-        Array (
-          makeField( m_COMPANYNM, agent.companyName),
-          makeField( m_COMPANYID, agent.companyId.toString),
-          makeField( m_COMPANYGROUPID, agent.companyGroupId.toString),
-          makeField( m_AGENTID, agent.agentId.toString),    // added for ES
-          makeField( m_VENDOR, agent.vendorName),
-          makeField( m_DEVICEMODEL, agent.sensor),
-          makeField( m_DEVICETYPE, agent.sensorType.toString)
-        )
-      ).orElse( wOptionLogOn.log("* makeAgnFields : empty") ~> Some(Array[Field]()))
-    ret
-  }
-
-  def makeComFields(agent: Agent, parsed: Map[Int, String], ref: ParserRef)
-                   ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    // todo
-    val f  = (str: String) => Option( CompanyIpRange.locationString( CompanyIpRange.isCompanyIp( agent.companyId, ref.companyIpRange, str) ))
-
-    val ret =
-      WOption.sequence(
-        Array (
-          makeField( m_SRCDIRECTION, m_SRCIP, parsed, f),
-          makeField( m_DESTDIRECTION, m_DESTIP, parsed, f)
-        )
-      ).orElse( wOptionLogOn.log("* makeComFields : empty") ~> Some(Array[Field]()))
-    ret
-  }
-
-  def makeCntFields( parsed: Array[(Int, String)])
-                   ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    val orig = getInteger( m_COUNT, parsed).getOrElse( 1)
-    val repeat = getInteger( m_REPEATCOUNT, parsed).getOrElse( 1)
-    val count = ( orig * repeat ).toString
-
-    val ret =
-      WOption.sequence(
-        Array (
-          makeField( m_REPEATCOUNT, repeat.toString),
-          makeField( m_COUNT, count)
-        )
-      ).orElse( wOptionLogOn.log("* makeCntFields : empty") ~> Some(Array[Field]()))
-    ret
-  }
-
-  def makeHdrFields( syslog: Syslog.SyslogHeader,
-                     parsed: Array[(Int, String)])
-                   ( implicit wOptionLogOn: WOptionLogOn)
-  : WOption[List[String], Array[Field]] = {
-
-    val ret =
-      WOption.sequence(
-        Array (
-          makeField( m_SYSLOGTIME, syslog.timestamp)
-        )
-      ).orElse( wOptionLogOn.log("* makeHdrFields : empty") ~> Some(Array[Field]()))
-    ret
-  }
-
-
   def makeRepFields(parsed: Array[(Int, String)], agn: Agent, ref: ParserRef)
-                   ( implicit wOptionLogOn: WOptionLogOn)
+                   ( implicit wOptionLogOn: WOptionLogOn, vf: Option[VariableKeys])
   : WOption[List[String], Array[Field]] = {
 
     val replaces: Array[(Int, String)] = ReplaceField.find(parsed, agn, ref.replaceFields)
@@ -278,12 +151,7 @@ object ParserHelper {
     }.orElse( wOptionLogOn.log("* makeRepFields : cat not found") ~> Some( Array[Field]()) )
   }
 
-  /** Determines the company of the normalization result.
-    *
-    * Search by IP information registered in CompanyIp
-    * In the absence of matching company ip,
-    * The owner is determined by comparing the "Source IP" or "Dest IP" in the normalization field to the IP range.
-    * */
+  //////////////////////////////////////////////////
   def decideCompanyByIp( candidates: Array[Agent], parsed: Array[(Int, String)], ref: ParserRef)
                        ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String ], Agent ] = {
@@ -293,7 +161,7 @@ object ParserHelper {
       for {
         sip <- wOptionLogOn.log(s"[ decideCompanyByIp ] start ") ~> getString( m_SRCIP, parsed)
         dip <- wOptionLogOn.log(s"[ decideCompanyByIp ] sip = $sip") ~> getString( m_DESTIP, parsed)
-        agn <- wOptionLogOn.log(s"[ decideCompanyByIp ] dip = $dip") ~> candidates.find { a =>
+        agn <- wOptionLogOn.log(s"[ decideCompanyByIp ] dip = $dip") ~> candidates.sortBy( _.agentId).find { a =>
           CompanyIp.isCompanyIp ( a.companyId, ref.companyIps, sip, dip ) ||
             CompanyIpRange.isCompanyIp ( a.companyId, ref.companyIpRange, sip, dip)
         }
@@ -303,15 +171,6 @@ object ParserHelper {
       } yield out
     }
 
-    /** Method to handle cases where there are multiple agents or no results registered in the IP range
-      *
-      * Determined as the most recently registered device among the active agents
-      *
-      * 1. If the company's IP range is duplicated and the owner can not be determined
-      * 2. There are duplicate agents with multiple sensors that can not determine the device
-      * 3. If you can not determine the owner because there is no ip registered in company ip, company ip range
-      *
-      * */
     def findActiveOrNew(as : Array[Agent]): WOption[List[String], Agent] = {
 
       val ar = as.filter( _.active )
@@ -324,17 +183,10 @@ object ParserHelper {
           wOptionLogOn.log(s"[ decideCompanyByIp ] n-active, latest = ${head.agentId}") ~> Some(head)
       }
     }
-
     findByCompanyIp orElse findActiveOrNew( candidates)
-
   }
 
-  /** Determine the Agent that corresponds to the normalization result.
-    *
-    * In a shared device or shared zone, multiple Agents or multiple company information are registered in a single Agent.
-    * For multiple sensors, determine the agent as the type of matched regular expression
-    * For multiple companies, agents and owners are determined based on company IP information.
-    * */
+  //////////////////////////////////////////////////
   def decideAgent( matched_deviceType: Long, decideCompany: Array[Agent] => WOption[List[String ], Agent ], agents: Array[Agent])
                  ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String ], Agent ] = {
@@ -356,7 +208,7 @@ object ParserHelper {
     }
   }
 
-  /** Retrieves the rule that assigns the matched result to the normalized Field. */
+  //////////////////////////////////////////////////
   def findArrangeRule( tokenizeRuleId: Int, matchedFieldCount: Int, ref: ParserRef)
                      ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String], Array[ArrangeRule]] = {
@@ -376,8 +228,24 @@ object ParserHelper {
     ret
   }
 
+  def arrangeResult2( matched : Regex.Match, rule: Array[ArrangeRule])
+                   ( implicit wOptionLogOn: WOptionLogOn)
+  : WOption[List[String], Array[(Int, String)]] = {
 
-  /** Assigns the Tokenized result to the normalization field. */
+      val arr =
+        rule.map { mr =>
+
+          val from = mr.captureOrder
+          val to = mr.fieldId
+          val itm = lift( matched.group ( from))
+
+          val log = wOptionLogOn.log( s"[ arrangeResult ] : ${(from, to, itm)}" )
+          ( log, itm.map( to -> _ ))
+        }
+
+    wOptionLogOn.log(arr.map(_._1).mkString("\n")) ~> Some( arr.flatMap(_._2))
+  }
+
   def arrangeResult( matched : Regex.Match, rule: Array[ArrangeRule])
                    ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String], Array[(Int, String)]] = {
@@ -396,10 +264,7 @@ object ParserHelper {
     }
   }
 
-  /** Attempts to match regular expressions.
-    *
-    * Returns the first matched regular expression result among a number of regular expressions.
-    * */
+  //////////////////////////////////////////////////
   def tryTokenizeRules( body: String, rules: Array [TokenizeRule] )
                       ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String ], (TokenizeRule, Regex.Match) ] = {
@@ -422,18 +287,12 @@ object ParserHelper {
       )
   }
 
-  /** Gets the regular expression to apply.
-    *
-    * Gets the regular expression of the sensor connected to the selected agent as a candidate.
-    * [Agent].sensorId = [TokenizeRule].sensorId
-    * */
   def filterTokenizeRules( agents: Array[Agent ], ref: ParserRef)
                          ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String ], Array[TokenizeRule ] ] = {
 
     val rules = ref.tokenizeRules
     val ret = TokenizeRule.filter( agents, rules)
-
 
     ret.length match {
       case 0 =>
@@ -449,13 +308,11 @@ object ParserHelper {
       case n =>
         wOptionLogOn.log(
           s"""[ lookupDeviceRules ] too many (# $n) * ${agents.map(h => (h.sensorId, h.sensor)).mkString(":")}""") ~>
-            Some(ret)
+          Some(ret)
     }
   }
 
-  /** Search for agents in the Agent category.
-    * Agent discovery uses hostname.
-    */
+  //////////////////////////////////////////////////
   def filterAgents( kind: SOCDeviceKind.Value, hint: Option[Array[String]], ref: ParserRef)
                   ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String ], Array[Agent ] ] = {
@@ -463,7 +320,7 @@ object ParserHelper {
     hint.flatMap{ ar =>
 
       val ret = kind match {
-        case SOCDeviceKind.normal => Agent.filter(ar(0), ref.mapHostAgent)
+        case SOCDeviceKind.normal     => Agent.filter( ar(0), ref.mapHostAgent)
       }
 
       ret.map { r =>
@@ -491,7 +348,7 @@ object ParserHelper {
     }
   }
 
-
+  //////////////////////////////////////////////////
   def SOCDeviceKindHint( host: String, body: String, ref: ParserRef)
                        ( implicit wOptionLogOn: WOptionLogOn)
 

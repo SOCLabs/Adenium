@@ -1,54 +1,65 @@
 package com.adenium.common
 
-import com.adenium.common.Keys._
 import com.adenium.utils.May._
 
 import scala.collection.immutable.HashMap
 
 /**
-	* Normalization result
-	*
-  * @param arrayWithMid
+  * Normalization result
+  *
+  * @param arrayWithID
   */
-case class Normalized( arrayWithMid : Array[(Int, String)]) extends FieldGetter {
+case class Normalized( arrayWithID : Array[ (Int, String)]) extends FieldGetter {
 
-  lazy val arrayWithKey: Array[( FieldKey, String)] =  arrayWithMid.flatMap{ itm => getKey(itm._1).map( _ -> itm._2) }
+  private lazy val hashmap: HashMap[Int, String] = HashMap( arrayWithID: _* )
+  override def get( mid: Int): Option[String] = hashmap.get( mid)
 
-  lazy val keyMap : Map[ FieldKey, String] = arrayWithKey.toMap
+  /**
+    * get all listed values according to listed seq. :  value may be None if not exists.
+    * @param ids
+    * @return
+    */
+  def getAll( ids: Array[Int]): Array[(Int, Option[String])] = ids.map(i => i -> get(i))
 
-  lazy val midMap : Map[ Int, String] = arrayWithMid.toMap
+  /**
+    * get all listed values according to listed seq.: value may be omitted if not exists.
+    * @param ids
+    * @return
+    */
+  def gets( ids: Array[Int]): Array[(Int, String)] = ids.flatMap(i => get(i).map( i -> _))
 
-  lazy val midMap2: HashMap[Int, String] = HashMap( arrayWithMid: _* )
-
-  //  override def get( keyid: KeyID.Value): Option[String] = getKey(keyid).flatMap( keyMap.get )
-  override def get( mid: Int): Option[String] = midMap2.get( mid)
-  override def company: Option[String] = this.get( m_COMPANYID )
-
+  /**
+    * get all listed values according to listed seq. :  value is set to default if not exists.
+    * @param ids
+    * @return
+    */
+  def getAllwithDefault( ids: Array[Int], default: String)
+  : Array[(Int, String)] = ids.map(i => i -> get(i).getOrElse(default))
 }
 
 object Normalized {
 
-	/** Normalization Format version Header*/
+  def apply( TSV : String): Normalized = Normalized( TSV2Normalized( TSV))
+
+  def filtered( ids: Array[Int])
+              ( norm: Normalized): Normalized = new Normalized( norm.gets(ids))
+
+  def ordered( ids: Array[Int], default: String= "")
+             ( norm: Normalized): Normalized = new Normalized( norm.getAllwithDefault(ids, default))
+
+  ///////////////////////////////////////////////////////
+  // interim String format
+  ///////////////////////////////////////////////////////
   val versionHeader : String = "adenium"
-	/** Normalization Result Delimiter*/
   val TAB: String = "\t"
-
-	/** Converts normalization result to TAB delimiter string*/
-  def makeTSPString(parsed: Parsed): String = {
-    val TSP: String = warn {
-      parsed.fields.map ( _.flatMap { _.valueWithId() }.mkString( TAB) )
-    }("[ Normalized ] : toTSV = Fields is empty.").getOrElse( "")
-
-    versionHeader + TAB + TSP
-  }
-
 
   /**
     * The result of the normalization of TAB delimiters is made into an array of (key, value) pairs.
     * @param TSV
     * @return
     */
-  def arrayWithMid( TSV: String ): Array[(Int, String)] = {
+
+  def TSV2Normalized( TSV: String ): Array[ (Int, String)] = {
 
     val arr = TSV.split( TAB)
     val ret =
@@ -68,7 +79,11 @@ object Normalized {
     ret
   }
 
-  def apply( TSV : String): Normalized = {
-    Normalized( arrayWithMid( TSV))
+  def parsed2TSV( parsed: Parsed): String = {
+    val TSV: String = warn {
+      parsed.fields.map ( _.flatMap { _.valueWithId }.mkString( TAB) )
+    }("[ Normalized ] : toTSV = Fields is empty.").getOrElse( "")
+
+    versionHeader + TAB + TSV
   }
 }

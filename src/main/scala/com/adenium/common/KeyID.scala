@@ -54,4 +54,5 @@ object KeyID extends Enumeration {
   val	DEVICETYPE	 : KeyID.Value = Value
   val	DEVICEMODEL	: KeyID.Value =	Value
   val	VENDOR	 : KeyID.Value = Value
+
 }

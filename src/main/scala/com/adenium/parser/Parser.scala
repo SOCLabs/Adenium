@@ -1,6 +1,6 @@
 package com.adenium.parser
 
-import com.adenium.common.{Field, Parsed}
+import com.adenium.common.{Field, Parsed, VariableKeys}
 import com.adenium.parser.ParserHelper._
 import com.adenium.parser.devices.Syslog
 import com.adenium.parser.reference.File2ParserRef.ParserRefFiles
@@ -11,6 +11,7 @@ import com.adenium.utils.WOption
 import com.adenium.utils.WOption.WOptionLogOn
 
 import scala.collection.immutable.HashMap
+
 
 /** Tokenize the sensor message and generate the normalization result. */
 object Parser extends Serializable {
@@ -23,7 +24,7 @@ object Parser extends Serializable {
     * An agent is marked as a candidate agent because there are multiple agents that share a single host name.
     */
   def findCandidates(host: String, syslog_body: String, ref: ParserRef)
-                            (implicit wOptionLogOn: WOptionLogOn)
+                    (implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String], Array[Agent]] = {
 
     for {
@@ -47,7 +48,7 @@ object Parser extends Serializable {
       1. Determines the owner of the agent and the normalization event.
     */
   def tryParsing(agents: Array[Agent], syslog_body: String, ref: ParserRef)
-                        (implicit wOptionLogOn: WOptionLogOn)
+                (implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String], (Agent, Array[(Int, String)])] = {
 
     for {
@@ -72,9 +73,9 @@ object Parser extends Serializable {
     * fix : A field that does not change the token result.
     * rep : A field that changes the token result with a rule defined in "ReplaceField".
     * */
-  def makeFields(syslog_header: Syslog.SyslogHeader,
+  private def makeFields(syslog_header: Syslog.SyslogHeader,
                          agent: Agent, parsed: Array[(Int, String)], ref: ParserRef)
-                        (implicit wOptionLogOn: WOptionLogOn)
+                        (implicit wOptionLogOn: WOptionLogOn, vf: Option[VariableKeys])
 
   : WOption[List[String], Array[Array[Field]]]
   = {
@@ -89,15 +90,15 @@ object Parser extends Serializable {
   }
 
   def foldFields( extflds: Array[Array[Field]])
-                        ( implicit wOptionLogOn: WOptionLogOn)
+                ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String], Array[Field]] = {
 
     val ret =
-    WOption.sequence {
-      val ret =
-        extflds.foldLeft(Array[WOption[List[String], Field]]())(overwrite)
-      ret
-    }
+      WOption.sequence {
+        val ret =
+          extflds.foldLeft(Array[WOption[List[String], Field]]())(overwrite)
+        ret
+      }
 
     if( wOptionLogOn.on)
       ret.appendLog( List[String]("=== foldFields ==="))
@@ -113,7 +114,7 @@ object Parser extends Serializable {
       1. The field is folded to produce the normalization result.
     * */
   def parse2Fields(syslog: Syslog.SyslogMsg, ref: ParserRef)
-                  (implicit wOptionLogOn: WOptionLogOn)
+                  (implicit wOptionLogOn: WOptionLogOn, vf: Option[VariableKeys])
   : WOption[List[String], Array[Field]] = {
 
     for {
@@ -144,6 +145,8 @@ object Parser extends Serializable {
   def execute( orig: String, ref: ParserRef, verbose: Boolean = false)
              ( implicit wOptionLogOn: WOptionLogOn)
   : Parsed = {
+
+    implicit val v: Option[VariableKeys] = ParserRef.ref2VariableField(ref)
 
     /** Separate syslog messages into header and body. */
     val syslog = Syslog.parse( orig)

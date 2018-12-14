@@ -17,7 +17,7 @@ object ParserTester extends App {
   /* reference data path*/
   val refPath = opts.get("path") map (_.head) getOrElse {
     println("Please check reference data path : -path [resource path] " + "\n " +
-            "Loaded from default path: resources\\")
+      "Loaded from default path: resources\\")
     "resources"
   }
 
@@ -33,7 +33,7 @@ object ParserTester extends App {
     val TSP: String =
       maybe {
         parsed.fields
-          .map ( _.flatMap { _.valueWithId() }.mkString( TAB) )
+          .map ( _.flatMap { _.valueWithId }.mkString( TAB) )
           .getOrElse(": maybe error : toTSV = Fields is empty.")
       }.getOrElse(": exception occurred")
 

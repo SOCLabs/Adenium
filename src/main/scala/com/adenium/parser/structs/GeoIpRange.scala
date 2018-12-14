@@ -4,20 +4,6 @@ import com.adenium.utils.IpUtil.ip2PublicLong
 
 import scala.annotation.tailrec
 
-
-/** Country-specific IP range.
-  *
-  * SRCIP -> SRCCOUNTRY
-  * DESTIP -> DESTCOUNTRY
-  *
-  * @constructor
-  * @param key
-  * @param sid
-  * @param eid
-  * @param nation
-  * @param sip
-  * @param eip
-  */
 case class GeoIpRange ( key: Long,
                         sid: Int,
                         eid: Int,
@@ -45,7 +31,6 @@ object GeoIpRange {
 
   }
 
-  /** binary search */
   def search(arr: Array[GeoIpRange], ip: Long): Option[Int] = {
 
     @tailrec

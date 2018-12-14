@@ -12,7 +12,7 @@ package com.adenium.parser.structs
 case class ArrangeRule( tokenizeRuleId: Int,
                         captureOrder: Int,
                         fieldId:Int
-                        )
+                      )
 
 object ArrangeRule {
 

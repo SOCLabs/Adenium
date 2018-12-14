@@ -17,11 +17,12 @@ object Args {
     - option1 --> Array("opt11", "opt12")
     - option2 --> Array("opt21")
     - option3 --> Array()
-	  *
+    *
     * @param args : arguments
     * @param keywords
     * @return
     */
+
   def args2map (args: Array[String], keywords : String )
   : Map[String, Array[String ] ] = {
 
@@ -45,5 +46,4 @@ object Args {
     }.toMap
 
   }
-
 }

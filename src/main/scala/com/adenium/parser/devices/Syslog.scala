@@ -34,6 +34,7 @@ import com.adenium.utils.WOption.{WOptionLogOn, WOptionMaker}
   - [[https://tools.ietf.org/html/rfc5424]]
   *
   */
+
 object Syslog {
 
   private val RFC3164 = """^.{0,32}<(\d+)>\d? ?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[ ]{1,2}(\d{1,2})[ ](\d{1,2}:\d{2}:\d{2}) (\S+) (.+)""".r.unanchored
@@ -57,7 +58,15 @@ object Syslog {
     val body: String
   }
 
-  /** RFC 3164 header
+  /**
+    * RFC 3164 header
+    *
+    * 3164 Date format
+    * "Mmm dd hh:mm:ss"
+    * Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+    * _1, _2, ... , 31
+    * 00:00:00 .. 23:59:59
+    * https://tools.ietf.org/html/rfc3164
     *
     * @param hostname hostname or IP address of original device.
     */
@@ -65,7 +74,7 @@ object Syslog {
                           month: String,
                           day: String,
                           hour: String,
-                          hostname: String) extends SyslogHeader
+                          hostname: String) extends SyslogHeader     // hostname or IP address of original device.
   {
     val timestamp = s"${this.day} ${this.month} ${this.hour}"
   }
@@ -88,7 +97,7 @@ object Syslog {
                           msgid: Option[String]) extends SyslogHeader
 
 
-  /** RFC 5424 Body */
+  /** [[https://tools.ietf.org/html/rfc5424]] */
   case class RFC5424Msg ( header: Header5424, body: String ) extends SyslogMsg
 
   object RFC5424Msg {
@@ -97,8 +106,8 @@ object Syslog {
     }
   }
 
+  ////////////////////////////////////////////
 
-  /** Syslog Message parsing */
   def parse( msg: String)
            ( implicit wOptionLogOn: WOptionLogOn)
   : WOption[List[String], SyslogMsg ]
@@ -111,6 +120,7 @@ object Syslog {
     }
   }
 
+  /** Syslog Message parsing */
   private def parseSyslogMsg(msg: String)
                             ( implicit wOptionLogOn: WOptionLogOn)
   = {

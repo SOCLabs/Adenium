@@ -17,7 +17,6 @@ import com.adenium.parser.devices
 object SOCDeviceKind extends Enumeration {
 
   type SOCDeviceKind = Value
-
   val normal: devices.SOCDeviceKind.Value = Value
 
 }

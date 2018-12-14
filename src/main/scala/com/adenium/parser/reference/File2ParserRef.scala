@@ -1,7 +1,7 @@
 package com.adenium.parser.reference
 
-import com.adenium.common.Field
 import com.adenium.common.Keys.getKey
+import com.adenium.common.{Field, FieldKey, VariableKeys}
 import com.adenium.parser.reference.File2ParserRef.ParserRefFiles
 import com.adenium.parser.structs._
 import com.adenium.utils.IpUtil.ip2Long
@@ -153,7 +153,6 @@ case class File2ParserRef(  ref : ParserRefFiles) extends ParserRefMaker {
           a4,
           a5,
           a6)
-
     }
   }
 
@@ -205,8 +204,25 @@ case class File2ParserRef(  ref : ParserRefFiles) extends ParserRefMaker {
       case Array(a1, a2, a3) =>
         ArrangeRule(
           a1.toInt,
-          a2.toInt,
+            a2.toInt,
           a3.toInt)
+    }
+  }
+
+
+  /** Replaceable fields*/
+  override def getReplaceFields(): ParserRef =  {
+
+    val fn = ref.replaceFields_fn
+
+    makeRefs( fn) {
+      case Array(a1, a2, a3, a4) =>
+        ReplaceField(
+          a1.toInt,
+          a2,
+          a3,
+          a4.toLong
+        )
     }
   }
 
@@ -221,28 +237,17 @@ case class File2ParserRef(  ref : ParserRefFiles) extends ParserRefMaker {
 
     val fn = ref.Fields_fn
 
+    // ColumnInfo( ... )
+    // idx	order_index	column_name	column_datatype	is_trans	is_replace	is_substitution
+    val keys =
     makeRefs( fn) {
-      case Array( mid, fname) =>
-        Field( getKey( mid.toInt, fname), None)
+      case Array( mid, fname ) =>
+        FieldKey( mid.toInt, fname)
 
     }
 
-  }
+    Some(VariableKeys( keys))
 
-  /** Replaceable fields*/
-  override def getReplaceFields(): ParserRef =  {
-
-    val fn = ref.replaceFields_fn
-
-    makeRefs( fn) {
-      case Array(a1, a2, a3, a4) =>
-        ReplaceField(
-          a1.toInt,
-          a2,
-          a3,
-          a4.toLong
-          )
-    }
   }
 
 

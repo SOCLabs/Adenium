@@ -7,7 +7,7 @@ package com.adenium.common
 	- '''String:''' a sequence of zero or more Unicode characters. Strings are delimited with double-quotation marks and support a backslash escaping syntax.
 	- '''Boolean:''' either of the values true or false
 
-	* Basic
+  * Basic
 	1. '''Most types are converted to String'''
 		- String, Date, DateTime... ==> "String", Right DateString format ?,
 		- JSON itself does not specify how dates should be represented, but JavaScript does.
@@ -20,27 +20,28 @@ package com.adenium.common
 	1. '''Collections'''
 		- Map, Tuple ==> { "key" : "value", "key2" : "value2", .... }
 		- Array, ... ==> [ "key" : "value", "key2" : "value2", .... }
-	*
-	*
-	* Data Type of Normalization field
-	*
-	* further thinking...
+  *
+  *
+  * Data Type of Normalization field
+  *
+  * further thinking...
 	-   typeStringEmail,
 	-   typeStringAddress,
 	-   typeStringIP,
 	-   typeStringPort,
 	-   typeStringURL
-	*/
+  */
 
 object FieldType extends Enumeration {
 
   type FieldType = Value
 
-  val TypeString: FieldType.Value = Value
-  val TypeNumeric: FieldType.Value = Value
-  val TypeDateString: FieldType.Value = Value
-  val TypeDateMillis: FieldType.Value = Value
-  val TypeBoolean: FieldType.Value = Value
+  val TString: FieldType.Value = Value
+  val TNumeric: FieldType.Value = Value
+  val TDateString: FieldType.Value = Value
+  val TDateMillis: FieldType.Value = Value
+  val TBoolean: FieldType.Value = Value
+  val TDouble: FieldType.Value = Value
 
 }
 

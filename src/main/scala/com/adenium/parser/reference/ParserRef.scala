@@ -1,11 +1,10 @@
 package com.adenium.parser.reference
 
-import com.adenium.common.Field
+import com.adenium.common.{Field, VariableKeys}
 import com.adenium.parser.structs._
 import com.adenium.utils.Logger
 
 import scala.language.implicitConversions
-
 /** Reference data for normalization
   *
   - mapHostAgent: Map of host ( ip or name )
@@ -28,10 +27,9 @@ case class ParserRef (mapHostAgent: Option[Map[Long, Array[ Agent]]] = None,
                       geoIpRange: Option[Map[Long, Array[GeoIpRange]]] = None,
                       signatures: Option[Map[(String, Long), Signature]] = None,
                       replaceFields: Option[Map[Int, Array[ ReplaceField]]] = None,
-                      fields: Option[Array[Field]] = None )
+                      fields: Option[VariableKeys] = None )
 {
 
-  /** Add reference data */
   def <+(update : ParserRef ): ParserRef = {
 
     ParserRef (
@@ -61,7 +59,7 @@ object ParserRef {
         s"""[ParserRef] mapAgent: ${ref.mapAgent.map(_.values.size)}"""   +
         s"""[ParserRef] ruleSetInfo  : ${ref.tokenizeRules.map(_.values.size)}"""  +
         s"""[ParserRef] matchingRuleFieldInfo  : ${ref.arrangeRules.map(_.values.size)}"""  +
-        s"""[ParserRef] FieldInfo  : ${ref.fields.map(_.length)}"""  +
+        s"""[ParserRef] FieldInfo  : ${ref.fields.map(_.size)}"""  +
         s"""[ParserRef] FieldReplace : ${ref.replaceFields.map(_.values.size)}"""  +
         s"""[ParserRef] companyServerInfo  : ${ref.companyIps.map(_.valuesIterator.length)}"""
 
@@ -75,7 +73,10 @@ object ParserRef {
   }
 
   /////////////////////////////////////////////////////////////////////
-  implicit def agentRef( r: Option[Array[ Agent]] )
+  // todo
+  implicit def ref2VariableField  ( r: ParserRef): Option[VariableKeys] = { r.fields }
+
+  implicit def agentRef           ( r: Option[Array[ Agent]] )
   : ParserRef = {
     r.map { arr =>
 
@@ -112,8 +113,6 @@ object ParserRef {
   implicit def replaceFields2Ref   ( r: Option[Array[ ReplaceField]])
   : ParserRef = ParserRef( replaceFields = r.map(_.groupBy(_.mid)))
 
-  implicit def Fields2Ref          ( r: Option[Array[Field]])
+  implicit def Fields2Ref          ( r: Option[VariableKeys])
   : ParserRef = ParserRef(fields = r)
-
-
 }

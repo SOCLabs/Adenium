@@ -1,19 +1,10 @@
 package com.adenium.parser.structs
 
-/** Field for changing the normalization result by condition
-  *
-  * If the normalization character at the specified mid matches a specific "vendor" and corresponds to "in string", change it to "out string".
-  *
-  * @constructor
-  * @param mid
-  * @param instr
-  * @param outstr
-  * @param vendor
-  */
 case class ReplaceField( mid: Int,
                          instr: String,
                          outstr: String,
-                         vendor: Long)
+                         vendor: Long,
+                         ignoreVendor: Boolean = true)
 
 object ReplaceField {
 
@@ -25,7 +16,7 @@ object ReplaceField {
         rfs <- replaces
         arr <- rfs.get( mid )
         rep = arr.filter ( _.instr == value)      // todo: may need some performance improvement...
-        ret <- rep.find( _.vendor == agn.vendorId)
+        ret <- rep.find( _.vendor == agn.vendorId) orElse rep.find ( _.ignoreVendor )
 
       } yield {
         mid -> ret.outstr
