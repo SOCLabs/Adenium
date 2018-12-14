@@ -4,9 +4,6 @@
 
 **Normalizer**는 Adenium Framework상에서 동작하는 Application으로 다양한 Sensor의 Event(Log)를 정규화 합니다. Regular expression 기반으로 범용적인 Tokenize method 와 사전 정의된 정규화 필드 및 사용자 정의 필드를 지원합니다. 독립 실행 구조로 설계되어 독립 실행 어플리케이션 또는 분산처리 Framework 인 Spark와 같은 특정 Framework의 한 부분으로 동작 할 수 있습니다. 
 
-[TOC]
-
-
 
 ## Adenium Framework
 
@@ -697,15 +694,15 @@ mvn -clean install -P Parser  // with dependencies.
 
 **RefData :** 정규화 참조 데이터
 
-- **agentInfo.ref : ** Agent 정보
-- **arrangeRules.ref :** Tokenize 결과를 Normalization Field로 변경하는 규칙
-- **companyIpRange.ref : ** 소유주의 IP 범위
-- **companyServerIp.ref : ** 소유주의 IP 정보
-- **fields.ref : ** 정규화 필드
-- **geoIpRange.ref : ** 국가 IP Band
-- **replaceFields.ref : ** 변경 필드
-- **signatures.ref : ** Sensor Signature
-- **tokenizeRules.ref : ** 정규식
+- agentInfo.ref : Agent 정보
+- arrangeRules.ref : Tokenize 결과를 Normalization Field로 변경하는 규칙
+- companyIpRange.ref : 소유주의 IP 범위
+- companyServerIp.ref : 소유주의 IP 정보
+- fields.ref : 정규화 필드
+- geoIpRange.ref : 국가 IP Band
+- replaceFields.ref : 변경 필드
+- signatures.ref : Sensor Signature
+- tokenizeRules.ref : 정규식
 
 ##### Test
 
