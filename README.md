@@ -1,3 +1,7 @@
+![Adenium: Normalizer](./img/Adenium_400x105.png)
+
+![](https://img.shields.io/github/license/SOCLabs/Adenium.svg) ![](https://img.shields.io/github/forks/SOCLabs/Adenium.svg) ![](https://img.shields.io/github/stars/SOCLabs/Adenium.svg) [![contributing](https://img.shields.io/badge/link-CONTRIBUTING-ff69b4.svg)](https://github.com/SOCLabs/Adenium/blob/master/CONTRIBUTING.md)
+
 # **Adenium Framework 와 Normalizer**
 
 **Adenium Framework**는 분산처리 Framework인 Spark 환경에서 동작하는 Application의 동적 제어 방법과 입력 Data의 분배 및 출력 결과의 전송을 일관된 프로세스로 제어 할 수 있는 환경을 제공 합니다. 
